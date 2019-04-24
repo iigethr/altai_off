@@ -20,18 +20,14 @@ import jQuery from "jquery"
 
     // Settings
     settings = {
-      debug: false
+      debug: true
     }
     settings = $.extend(settings, options)
 
     // Log
     log = message => {
       if (settings.debug) {
-        if (typeof ((console === "undefined") && (console === null))) {
-          return console.log(message)
-        } else {
-          return undefined
-        }
+        return console.log(message)
       } else {
         return undefined
       }
@@ -39,19 +35,17 @@ import jQuery from "jquery"
 
     // Action
     action = () => {
-      object.each(function() {
+      object.each( () => {
         $(this).on("click", event => {
           event.preventDefault()
+          log("Altai Off Activated!")
         })
       })
     }
 
     // If object found run actions
     if (object.length > 0) {
-      return this.each(() => {
-        action()
-        log("Altai Off Activated")
-      })
+      action()
     }
   }
 }))(jQuery, window, document)
