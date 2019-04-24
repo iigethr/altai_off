@@ -1,7 +1,7 @@
 {
   "name": "altai_off",
   "title": "Altai Off",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Disable anchor href default behaviour.",
   "main": "dist/altai_off.js",
   "dependencies": {

@@ -6,50 +6,52 @@
 */
 
 // jQuery
-var jQuery;
+import $ from "jquery"
+import jQuery from "jquery"
 
-(function($, window, document) {
-  return $.fn.extend({
-    altaiOff: function(options) {
-      // Variables
-      var action, log, settings;
-      var object = $(this);
+(($, window, document) => $.fn.extend({
+  altaiOff(options) {
 
-      // Default settings
-      settings = {
-        debug: false
-      };
-      settings = $.extend(settings, options);
+    // Lets & Constants
+    let action
+    let log
+    let settings
+    const object = $(this)
 
-      // Log
-      log = function(message) {
-        if (settings.debug) {
-          if (typeof ((console === "undefined") && (console === null))) {
-            return console.log(message);
-          } else {
-            return undefined;
-          }
+    // Settings
+    settings = {
+      debug: false
+    }
+    settings = $.extend(settings, options)
+
+    // Log
+    log = message => {
+      if (settings.debug) {
+        if (typeof ((console === "undefined") && (console === null))) {
+          return console.log(message)
         } else {
-          return undefined;
+          return undefined
         }
-      };
-
-      // Action
-      action = function() {
-        object.each(function() {
-          $(this).on("click", function(e) {
-            e.preventDefault();
-          });
-        });
-      };
-
-      // If object found run actions
-      if (object.length > 0) {
-        return this.each(function() {
-          action();
-          log("Altai Off Activated");
-        });
+      } else {
+        return undefined
       }
     }
-  });
-})(jQuery, window, document);
+
+    // Action
+    action = () => {
+      object.each(function() {
+        $(this).on("click", event => {
+          event.preventDefault()
+        })
+      })
+    }
+
+    // If object found run actions
+    if (object.length > 0) {
+      return this.each(() => {
+        action()
+        log("Altai Off Activated")
+      })
+    }
+  }
+}))(jQuery, window, document)
